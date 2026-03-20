@@ -9,73 +9,73 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    Base waterBase("Вода", "Обычная вода", 1.0);
-    Base magicBase("Магическая основа", "Древняя магия", 2.0);
+    Base waterBase("Water", "Regular water", 1.0);
+    Base magicBase("Magic Base", "Ancient magic", 2.0);
 
-    Ingredient herb("Трава", "Лечебная трава", "Лечит");
-    Ingredient mushroom("Гриб", "Светящийся гриб", "Ночное зрение");
-    Ingredient crystal("Кристалл", "Магический кристалл", "Усиливает магию");
+    Ingredient herb("Herb", "Healing herb", "Heals");
+    Ingredient mushroom("Mushroom", "Glowing mushroom", "Night vision");
+    Ingredient crystal("Crystal", "Magic crystal", "Enhances magic");
 
-    cout << "\n--- ЧАСТЬ 1: ЗЕЛЬЯ ---" << endl;
+    cout << "\n--- PART 1: POTIONS ---" << endl;
 
     vector<Ingredient> potion1Ings;
     potion1Ings.push_back(herb);
     potion1Ings.push_back(mushroom);
 
-    Potion p1("Лечебное", "Восстанавливает здоровье", 100,
+    Potion p1("Healing", "Restores health", 100,
         waterBase, 5, potion1Ings);
 
     vector<Ingredient> potion2Ings;
     potion2Ings.push_back(mushroom);
     potion2Ings.push_back(crystal);
 
-    Potion p2("Магическое", "Усиливает магию", 200,
+    Potion p2("Magic", "Enhances magic", 200,
         magicBase, 3, potion2Ings);
 
-    cout << "\nИсходные зелья:" << endl;
+    cout << "\nOriginal potions:" << endl;
     p1.printInfo();
     p2.printInfo();
 
-    cout << "\nОПЕРАТОРЫ" << endl;
+    cout << "\nOPERATORS" << endl;
     Potion p3 = p1 + p2;
-    cout << "Результат p1 + p2:" << endl;
+    cout << "Result p1 + p2:" << endl;
     p3.printInfo();
 
     Potion p4 = p1 * p2;
-    cout << "Результат p1 * p2:" << endl;
+    cout << "Result p1 * p2:" << endl;
     p4.printInfo();
 
-    cout << "\nКОТЁЛ" << endl;
+    cout << "\nCAULDRON" << endl;
 
     Cauldron cauldron(5, waterBase);
     cauldron.printInfo();
 
-    cout << "\nДобавление ингредиентов в котёл:" << endl;
+    cout << "\nAdding ingredients to cauldron:" << endl;
     cauldron.addIngredient(herb);
     cauldron.addIngredient(mushroom);
     cauldron.addIngredient(crystal);
     cauldron.printInfo();
 
-    Potion p5 = cauldron.createPotion("Зелье из котла",
-        "Сварено в котле", 150);
+    Potion p5 = cauldron.createPotion("Cauldron Potion",
+        "Brewed in cauldron", 150);
     p5.printInfo();
 
-    cout << "\nКотёл после создания зелья:" << endl;
+    cout << "\nCauldron after creating potion:" << endl;
     cauldron.printInfo();
 
     cauldron.fillFromPotion(p2);
-    cout << "\nКотёл после заполнения из зелья p2:" << endl;
+    cout << "\nCauldron after filling from potion p2:" << endl;
     cauldron.printInfo();
 
-    cout << "РАСЧЁТ СИЛЫ ЗЕЛИЙ" << endl;
-    cout << "Сила зелья p1 (вода x1.0): " << p1.calculatePower() << endl;
-    cout << "Сила зелья p2 (магия x2.0): " << p2.calculatePower() << endl;
+    cout << "POTION POWER" << endl;
+    cout << "Power of p1 (Water x1.0):" << p1.calculatePower() << endl;
+    cout << "Power of p2 (Magic x2.0): " << p2.calculatePower() << endl;
 
-    cout << "   ОЦЕНКА ЛАБОРАТОРНОЙ РАБОТЫ" << endl;
-    cout << "Моя оценка:" << endl;
-    cout << "Интерес: 9 из 10" << endl;
-    cout << "Наполненность: 10 из 10" << endl;
-    cout << "Сложность: 8 из 10" << endl;
+    cout << "   LABORATORY WORK EVALUATION" << endl;
+    cout << "My evalution: 9" << endl;
+    cout << "Interest: 9 out of 10" << endl;
+    cout << "Completeness: 10 out of 10" << endl;
+    cout << "Difficulty: 9 out of 10" << endl;
 
     return 0;
 }

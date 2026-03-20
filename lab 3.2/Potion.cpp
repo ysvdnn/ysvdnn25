@@ -15,9 +15,9 @@ Ingredient::Ingredient(string n, string d, string e) {
 }
 
 void Ingredient::printInfo() const {
-    cout << "  Ингредиент: " << name << endl;
-    cout << "    Описание: " << description << endl;
-    cout << "    Эффект: " << effect << endl;
+    cout << "  Ingredient: " << name << endl;
+    cout << "  Description: " << description << endl;
+    cout << "  Effect: " << effect << endl;
 }
 
 Base::Base() {
@@ -38,8 +38,8 @@ Base::Base(string n, string d, float m) {
 }
 
 void Base::printInfo() const {
-    cout << "  Основа: " << name << " (x" << multiplier << ")" << endl;
-    cout << "    Описание: " << description << endl;
+    cout << "  Base: " << name << " (x" << multiplier << ")" << endl;
+    cout << "  Description: " << description << endl;
 }
 
 void Potion::validatePrice(int newPrice) {
@@ -173,7 +173,7 @@ void Potion::changeBase(Base newBase) {
 }
 
 void Potion::changeBase() {
-    base = Base("Вода", "Обычная вода", 1.0);
+    base = Base("Water", "Regular water", 1.0);
 }
 
 void Potion::drink() {
@@ -218,7 +218,7 @@ Potion Potion::operator+(const Potion& other) const {
 
         if (found) {
             Ingredient допIng = ing;
-            допIng.name = ing.name + " доп";
+            допIng.name = ing.name + " extra";
             newIngredients.push_back(допIng);
         }
         else {
@@ -226,12 +226,12 @@ Potion Potion::operator+(const Potion& other) const {
         }
     }
 
-    return Potion("Результат +", "Смесь зелий", newPrice,
+    return Potion("Result +", "Mixture of potions", newPrice,
         newBase, newVolume, newIngredients);
 }
 
 Potion& Potion::operator+=(const Potion& other) {
-    name = name + "(обн.)";
+    name = name + "extra";
 
     if (other.volume > volume) {
         base = other.base;
@@ -268,10 +268,10 @@ Potion Potion::operator*(const Potion& other) const {
     srand(time(NULL));
 
     Base bases[4] = {
-        Base("Вода", "Чистая вода", 1.0),
-        Base("Спирт", "Крепкий спирт", 1.5),
-        Base("Масло", "Магическое масло", 2.0),
-        Base("Земля", "Древняя земля", 1.2)
+        Base("Water", "Pure water", 1.0),
+        Base("Alcohol", "Strong alcohol", 1.5),
+        Base("Oil", "Magical oil", 2.0),
+        Base("Earth", "Ancient earth", 1.2)
     };
 
     int randomIndex = rand() % 4;
@@ -311,26 +311,26 @@ Potion Potion::operator*(const Potion& other) const {
         }
     }
 
-    Ingredient tail("хвост", "Хвост ящерицы", "Добавляет стойкость");
-    Ingredient water("вода", "Чистая вода", "Разбавляет");
+    Ingredient tail("tail", "Lizard tail", "Adds durability");
+    Ingredient water("water", "Pure water", "Dilutes");
     commonIngredients.push_back(tail);
     commonIngredients.push_back(water);
 
-    return Potion("Микс", "Таинственное зелье", newPrice,
+    return Potion("Mix", "Mysterious potion", newPrice,
         newBase, newVolume, commonIngredients);
 }
 
 void Potion::printInfo() const {
-    cout << "\n--- ЗЕЛЬЕ: " << name << endl;
-    cout << "Описание: " << description << endl;
-    cout << "Цена: " << price << endl;
-    cout << "Объём: " << volume << endl;
+    cout << "\n-POTION: " << name << endl;
+    cout << "Description: " << description << endl;
+    cout << "Price: " << price << endl;
+    cout << "Volume: " << volume << endl;
     base.printInfo();
-    cout << "Сила: " << calculatePower() << endl;
-    cout << "Ингредиенты:" << endl;
+    cout << "Power: " << calculatePower() << endl;
+    cout << "Ingredients:" << endl;
 
     if (ingredients.empty()) {
-        cout << "  нет" << endl;
+        cout << "none" << endl;
     }
     else {
         for (int i = 0; i < ingredients.size(); i++) {

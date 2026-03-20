@@ -97,13 +97,13 @@ void Cauldron::fillFromPotion(const Potion& potion) {
 }
 
 void Cauldron::printInfo() const {
-    cout << "\nКОТЁЛ" << endl;
-    cout << "Объём: " << volume << endl;
-    cout << "Основа: " << currentBase.name << " (x" << currentBase.multiplier << ")" << endl;
-    cout << "Ингредиентов: " << ingredients.size() << "/" << volume << endl;
+    cout << "\n-CAULDRON" << endl;
+    cout << "Volume: " << volume << endl;
+    cout << "Base: " << currentBase.name << " (x" << currentBase.multiplier << ")" << endl;
+    cout << "Ingredients: " << ingredients.size() << "/" << volume << endl;
 
     if (!ingredients.empty()) {
-        cout << "Список:" << endl;
+        cout << "List: " << endl;
         for (int i = 0; i < ingredients.size(); i++) {
             cout << "  " << (i + 1) << ". " << ingredients[i].name << endl;
         }
