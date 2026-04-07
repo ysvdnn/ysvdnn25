@@ -1,0 +1,9 @@
+build/
+.qt/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.exe
+*.o
+*.a
+.qtc_clangd/
